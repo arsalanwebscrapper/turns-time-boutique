@@ -1,12 +1,36 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import Header from "@/components/layout/Header";
+import Hero from "@/components/sections/Hero";
+import FeaturedCategories from "@/components/sections/FeaturedCategories";
+import Trending from "@/components/sections/Trending";
+import CollectionHighlights from "@/components/sections/CollectionHighlights";
+import { Helmet } from "react-helmet-async";
 
 const Index = () => {
+  const canonical = typeof window !== 'undefined' ? window.location.href : 'https://turns-time.example.com';
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-background text-foreground">
+      <Helmet>
+        <title>TURN'S TIME — Luxury Watches Boutique</title>
+        <meta name="description" content="Limited edition, high quality luxury watches. Shop premium chronographs and curated collections at TURN'S TIME." />
+        <link rel="canonical" href={canonical} />
+        <meta name="robots" content="index,follow" />
+        <script type="application/ld+json">{JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'Organization',
+          name: "TURN'S TIME",
+          url: canonical,
+          logo: '/favicon.ico',
+          sameAs: []
+        })}</script>
+      </Helmet>
+
+      <Header />
+      <main>
+        <Hero />
+        <FeaturedCategories />
+        <Trending />
+        <CollectionHighlights />
+      </main>
     </div>
   );
 };
